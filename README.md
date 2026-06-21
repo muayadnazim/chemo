@@ -13,7 +13,7 @@
 
 ## 🚀 النشر على GitHub Pages
 
-الموقع منشور على: `https://[your-username].github.io/chemo/`
+الموقع منشور على: https://muayadnazim.github.io/chemo/
 
 ## 💊 الأدوية المشمولة
 
