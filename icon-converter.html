@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Generate Icons</title></head>
+<body>
+  <h1>Icon Generator</h1>
+  <p>Take screenshots of these icons and save them as PNG files</p>
+  <img src="icon-192.svg" width="192" height="192" onload="convertToPNG(this, 192)">
+  <img src="icon-512.svg" width="512" height="512" onload="convertToPNG(this, 512)">
+  <canvas id="canvas192" width="192" height="192"></canvas>
+  <canvas id="canvas512" width="512" height="512"></canvas>
+  <script>
+    function convertToPNG(img, size) {
+      const canvas = document.getElementById('canvas' + size);
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, size, size);
+      const link = document.createElement('a');
+      link.download = 'icon-' + size + '.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+</body>
+</html>

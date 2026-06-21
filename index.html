@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a73e8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="موسوعة الكيمياوي">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.svg">
+    <title>موسوعة الأدوية الكيمياوية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-flask"></i>
+                    <h1>موسوعة الأدوية الكيمياوية</h1>
+                </div>
+                <button id="installBtn" class="install-btn" style="display:none;">
+                    <i class="fas fa-download"></i> تثبيت التطبيق
+                </button>
+            </div>
+            <p class="subtitle">دليل شامل للممرضين والممارسين الصحيين</p>
+        </div>
+    </header>
+
+    <!-- Search and Filters -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" placeholder="ابحث عن دواء... (مثال: Taxol, كاربوبلاتين, كيترودا)">
+            </div>
+            <div class="filter-tabs" id="filterTabs">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th-list"></i> الجميع
+                </button>
+                <button class="filter-btn" data-filter="علاج كيمياوي">
+                    <i class="fas fa-syringe"></i> كيمياوي
+                </button>
+                <button class="filter-btn" data-filter="علاج موجه">
+                    <i class="fas fa-crosshairs"></i> علاج موجه
+                </button>
+                <button class="filter-btn" data-filter="علاج مناعي">
+                    <i class="fas fa-shield-alt"></i> مناعي
+                </button>
+                <button class="filter-btn" data-filter="علاج هرموني">
+                    <i class="fas fa-dna"></i> هرموني
+                </button>
+                <button class="filter-btn" data-filter="دواء داعم">
+                    <i class="fas fa-hand-holding-heart"></i> داعم
+                </button>
+            </div>
+            <div class="stats-bar">
+                <span id="drugCount">0</span> دواء متاح
+            </div>
+        </div>
+    </section>
+
+    <!-- Drug Cards -->
+    <main>
+        <div class="container">
+            <div class="drugs-grid" id="drugsGrid"></div>
+            <div class="no-results" id="noResults">
+                <i class="fas fa-search-minus"></i>
+                <p>لا توجد نتائج للبحث</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>جميع الحقوق محفوظة &copy; 2026 | موسوعة الأدوية الكيمياوية - للممرضين والممارسين الصحيين</p>
+            <p class="footer-note">هذا الموقع ليس بديلاً عن المصادر الطبية الرسمية. يُستخدم كمرجع مساعد فقط.</p>
+        </div>
+    </footer>
+
+    <!-- Drug Details Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content" id="modalContent">
+            <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Register Service Worker for offline support
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('✅ SW registered:', reg.scope))
+                    .catch(err => console.log('❌ SW registration failed:', err));
+            });
+        }
+    </script>
+</body>
+</html>
